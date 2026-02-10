@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: reference-new.html 
+keywords: 'what"s new, new, features, release notes, enhancements' 
+summary: Cloud Volumes ONTAP 9.17.1 包括一项新的增强功能。 
+---
+= Cloud Volumes ONTAP 9.17.1 中的新增功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Volumes ONTAP 9.17.1 包括新的增强功能。
+
+最新版本的 NetApp Console 中还引入了新的 Cloud Volumes ONTAP 功能。有关详细信息，请参见 Console 中 https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/whats-new.html["Cloud Volumes ONTAP"^]托管的新增功能。
+
+
+
+== 9.17.1 P3 (2025 年 12 月 22 日)
+
+Cloud Volumes ONTAP 9.17.1 P3 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。
+
+link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/downloads-tab/download/62632/9.17.1P3["查看 P3 补丁中修复的错误列表"^] （需要登录 NetApp 支持站点）。
+
+
+
+== 9.17.1 P2 (2025 年 12 月 4 日)
+
+Cloud Volumes ONTAP 9.17.1 P2 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。
+
+link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/downloads-tab/download/62632/9.17.1P2["查看 P2 补丁中修复的错误列表"^] （需要登录 NetApp 支持站点）。
+
+
+
+== 9.17.1 P1 (2025 年 11 月 4 日)
+
+Cloud Volumes ONTAP 9.17.1 P1 补丁现在可用于在 AWS、Azure 和 Google Cloud 中进行部署和升级。Console 将提示您将现有系统升级到此补丁版本。
+
+link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/downloads-tab/download/62632/9.17.1P1["查看 P1 补丁中修复的错误列表"^] （需要登录 NetApp 支持站点）。
+
+
+
+== 升级说明
+
+请阅读这些说明，了解有关升级到此版本的更多信息。
+
+
+
+=== 如何升级
+
+必须从 Console 完成 Cloud Volumes ONTAP 的升级。您不应使用 System Manager 或 CLI 升级 Cloud Volumes ONTAP。这样做会影响系统稳定性。
+
+link:http://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-updating-ontap-cloud.html["了解如何在 Console 通知您时进行升级"^]。
+
+
+
+=== 支持的升级路径
+
+您可以在 AWS、Azure 和 Google Cloud 中从 9.16.1 版本升级到 Cloud Volumes ONTAP 9.17.1 P1。Console 将提示您将符合条件的 Cloud Volumes ONTAP 系统升级到此版本。
+
+
+
+=== 停机时间
+
+* 单个节点系统的升级会使系统脱机长达 25 分钟，在此期间 I/O 会中断。
+* 升级 HA 对是无中断的，I/O 不会中断。在此无中断升级过程中，每个节点都会进行串联升级，以继续为客户端提供 I/O 服务。
+

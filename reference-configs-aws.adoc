@@ -1,0 +1,277 @@
+---
+sidebar: sidebar 
+permalink: reference-configs-aws.html 
+keywords: ec2, instance, type, explore, standard, premium, byol, capacity, maximum, virtual machine, Cloud Volumes ONTAP, supported, configurations, sizes, disks, networking, bandwidth, professional package 
+summary: AWS 支持几种 Cloud Volumes ONTAP 配置。 
+---
+= AWS 中支持的 Cloud Volumes ONTAP 配置
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+AWS 支持几种 Cloud Volumes ONTAP 配置。
+
+
+
+== 支持的节点数量
+
+Cloud Volumes ONTAP 在 AWS 中作为单节点系统和高可用性 (HA) 节点对提供，用于容错和无中断操作。
+
+不支持将单节点系统升级到 HA 对。如果要在单节点系统和 HA 对之间切换，则需要部署新系统并将数据从现有系统复制到新系统。
+
+
+
+== 支持的存储
+
+Cloud Volumes ONTAP 支持多种类型的 EBS 磁盘，以及用于数据分层的 S3 对象存储。最大存储容量由您选择的许可证决定。
+
+
+
+=== 按许可证提供的存储支持
+
+每个许可证支持不同的最大系统容量。最大系统容量包括基于磁盘的存储以及用于数据分层的对象存储。NetApp 不支持超过此限制。
+
+[role="tabbed-block"]
+====
+.基于容量的许可证
+--
+[cols="h,d,d"]
+|===
+|  | 免费增值 | 基于容量的许可证 
+
+
+ a| 
+*最大系统容量*（磁盘 + 对象存储）^1^
+| 500 GiB | 灵活^2^ 
+
+
+ a| 
+*支持的磁盘类型*
+ a| 
+* 通用 SSD (gp3 和 gp2) ^3^,^5^
+* 已配置 IOPS SSD (io1) ^3^
+* 吞吐量优化 HDD (st1) ^4^
+
+
+
+
+ a| 
+*冷数据分层到 S3*
+ a| 
+支持
+
+|===
+注：
+
+. 对于 HA 对，容量限制是针对整个 HA 对的。不是针对每个节点的。例如，如果您使用 Premium 许可证，两个节点之间的容量最多可达 368 TiB。
+. 对于某些配置，磁盘限制会阻止您仅使用磁盘来达到容量限制。在这些情况下，您可以通过 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-data-tiering.html["将非活动数据分层至对象存储"^]达到容量限制。有关磁盘限制的信息，请参阅link:reference-limits-aws.html["存储限制"]。
++
+借助基于容量的许可，每个 Cloud Volumes ONTAP 系统都支持到对象存储的分层。总分层容量可以扩展到云提供商的存储桶限制。虽然许可证不会施加容量限制，但在配置和管理分层时，应遵循 https://www.netapp.com/pdf.html?item=/media/17239-tr-4598.pdf["FabricPool 最佳实践"^]以确保最佳性能、可靠性和成本效益。
+
+. 当使用具有所有 Cloud Volumes ONTAP 配置的 SSD 时，将启用增强的写入性能。
+. 当使用吞吐量优化 HDD (st1) 时，不建议将数据分层到对象存储。
+. AWS Local Zones 中的 Cloud Volumes ONTAP 配置仅支持通用 SSD (gp2) 磁盘类型。AWS Local Zones 中的 Cloud Volumes ONTAP 不支持其他磁盘类型。
+
+
+--
+.基于节点的许可证
+--
+[cols="h,d,d,d,d"]
+|===
+|  | PAYGO Explore | PAYGO Standard | PAYGO Premium | 基于节点的 BYOL 
+
+
+| 最大系统容量（磁盘 + 对象存储） | 2 TiB | 10 TiB | 368 TiB ^2^ | 每个许可证 368 TiB ^2^ 
+
+
+| 支持的磁盘类型  a| 
+* 通用 SSD (gp3 和 gp2) ^3^,^5^
+* 已配置 IOPS SSD (io1) ^3^
+* 吞吐量优化 HDD (st1) ^4^
+
+
+
+
+| 冷数据分层到 S3 | 不支持 3+| 支持 
+|===
+注：
+
+. 对于 HA 对，容量限制是针对整个 HA 对的。不是针对每个节点的。例如，如果您使用 Premium 许可证，两个节点之间的容量最多可达 368 TiB。
+. 对于某些配置，磁盘限制会阻止您仅使用磁盘来达到容量限制。在这些情况下，您可以通过 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-data-tiering.html["将非活动数据分层至对象存储"^]达到容量限制。有关磁盘限制的信息，请参阅link:reference-limits-aws.html["存储限制"]。
+. 使用具有所有 Cloud Volumes ONTAP 配置的 SSD 时，将启用增强的写入性能，但 PAYGO Explore 除外。
+. 当使用吞吐量优化 HDD (st1) 时，不建议将数据分层到对象存储。
+. AWS Local Zones 中的 Cloud Volumes ONTAP 配置仅支持通用 SSD (gp2) 磁盘类型。
+
+
+--
+====
+
+
+=== 支持的磁盘大小
+
+在 AWS 中，一个聚合最多可包含 6 个大小相同的磁盘。但是，如果您的配置支持 Amazon EBS Elastic Volumes 功能，则一个聚合最多可包含 8 个磁盘。 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-aws-elastic-volumes.html["详细了解对 Elastic Volumes 的支持"^]
+
+[cols="3*"]
+|===
+| 通用 SSD（gp3 和 gp2） | 预配置 IOPS SSD (io1) | 吞吐量优化 HDD (st1) 
+
+
+ a| 
+* 100 GiB
+* 500 GiB
+* 1 TiB
+* 2 TiB
+* 4 TiB
+* 6 TiB
+* 8 TiB
+* 16 TiB
+
+ a| 
+* 100 GiB
+* 500 GiB
+* 1 TiB
+* 2 TiB
+* 4 TiB
+* 6 TiB
+* 8 TiB
+* 16 TiB
+
+ a| 
+* 500 GiB
+* 1 TiB
+* 2 TiB
+* 4 TiB
+* 6 TiB
+* 8 TiB
+* 16 TiB
+
+
+|===
+
+
+== 支持的 EC2 计算
+
+每个 Cloud Volumes ONTAP 许可证支持不同的 EC2 实例类型。为方便起见，下表显示了每种支持的实例类型的 vCPU、RAM 和带宽 https://aws.amazon.com/ec2/instance-types/["有关 EC2 实例类型的最新和完整详细信息，请参阅 AWS"^]。
+
+Cloud Volumes ONTAP 可以在保留或按需 EC2 实例上运行。不支持使用其他实例类型的解决方案。
+
+下表中显示的带宽与每个实例类型的记录 AWS 限制相匹配。这些限制与 Cloud Volumes ONTAP 可以提供的不完全一致。有关预期性能，请参阅 https://www.netapp.com/pdf.html?item=/media/9088-tr4383pdf.pdf["NetApp 技术报告 4383：具有应用程序工作负载的 Amazon Web Services 中 Cloud Volumes ONTAP 的性能特征"^]。
+
+[cols="8*"]
+|===
+| 许可证 | 支持的实例 | vCPU | RAM | Flash Cache ^1^ | 网络带宽 (Gbps) | EBS 带宽 (Mbps) | 高写入速度^2^ 
+
+
+| *Explore 或任何其他许可证* | m5.xlarge ^6^ | 4 | 16 | 不支持 | 最多 10 | 最多 4,750 | 支持（仅限单个节点） 
+
+
+.3+| *标准或任何其他许可证* | r5.xlarge ^6^ | 4 | 32 | 不支持 | 最多 10 | 最多 4,750 | 支持（仅限单个节点） 
+
+
+| m5a.2xlarge | 8 | 32 | 不支持 | 最多 10 | 最多 2,880 | 支持 
+
+
+| m5.2xlarge ^6^ | 8 | 32 | 不支持 | 最多 10 | 最多 4,750 | 支持 
+
+
+.22+| *Premium 或任何其他许可证* | m5n.2xlarge | 8 | 32 | 不支持 | 最多 25 | 最多 4,750 | 支持 
+
+
+| r5.2xlarge ^6^ | 8 | 64 | 不支持 | 最多 10 | 最多 4,750 | 支持 
+
+
+| r5d.2xlarge | 8 | 64 | 支持 | 最多 10 | 最多 4,750 | 支持 
+
+
+| c5d.4xlarge ^6^ | 16 | 32 | 支持 | 最多 10 | 4,570 | 支持 
+
+
+| m5.4xlarge ^6^ | 16 | 64 | 不支持 | 最多 10 | 4,750 | 支持 
+
+
+| m5dn.4xlarge | 16 | 64 | 支持 | 最多 25 | 4,750 | 支持 
+
+
+| m5d.8xlarge | 32 | 128 | 支持 | 10 | 6,800 | 支持 
+
+
+| r5.8xlarge | 32 | 256 | 不支持 | 10 | 6,800 | 支持 
+
+
+| c5.9xlarge | 36 | 72 | 不支持 | 10 | 9,500 | 支持 
+
+
+| c5d.9xlarge | 36 | 72 | 支持 | 10 | 9,500 | 支持 
+
+
+| c5n.9xlarge | 36 | 96 | 不支持 | 50 | 9,500 | 支持 
+
+
+| c5a.12xlarge | 48 | 96 | 不支持 | 12 | 4,750 | 支持 
+
+
+| c5.18xlarge | 64^4^ | 144 | 不支持 | 25 | 19,000 | 支持 
+
+
+| c5d.18xlarge | 64^4^ | 144 | 支持 | 25 | 19,000 | 支持 
+
+
+| m5d.12xlarge | 48 | 192 | 支持 | 12 | 9,500 | 支持 
+
+
+| m5dn.12xlarge | 48 | 192 | 支持 | 50 | 9,500 | 支持 
+
+
+| c5n.18xlarge | 64^4^ | 192 | 不支持 | 100 | 19,000 | 支持 
+
+
+| m5a.16xlarge | 64 | 256 | 不支持 | 12 | 9,500 | 支持 
+
+
+| m5.16xlarge | 64 | 256 | 不支持 | 20 | 13,600 | 支持 
+
+
+| r5.12xlarge ^3^ | 48 | 384 | 不支持 | 10 | 9,500 | 支持 
+
+
+| m5dn.24xlarge | 64^4^ | 384 | 支持 | 100 | 19,000 | 支持 
+
+
+| m6id.32xlarge | 64^4^ | 512 | 支持 | 50 | 40,000 | 支持 
+|===
+. 某些实例类型包括本地 NVMe 存储，Cloud Volumes ONTAP 将其用作 Flash Cache。Flash Cache 通过对最近读取的用户数据和 NetApp 元数据进行实时智能缓存来加快数据访问速度。它对随机读取密集型工作负载非常有效，包括数据库、电子邮件和文件服务。必须在所有卷上禁用压缩才能利用 Flash Cache 性能改进 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-flash-cache.html["详细了解 Flash Cache"^]。
+. 使用 HA 对时，Cloud Volumes ONTAP 支持大多数实例类型的高写入速度。使用单节点系统时，所有实例类型均支持高写入速度 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-write-speed.html["详细了解如何选择写入速度"^]。
+. r5.12xlarge 实例类型具有已知的可支持性限制。如果节点因死机而意外重新启动，系统可能无法收集用于排除故障和根本原因分析的核心文件。如果出现这种情况，客户接受风险和有限支持条款，并承担所有支持责任。此限制影响新部署的 HA 对和从 9.8 升级的 HA 对。该限制不影响新部署的单节点系统。
+. 虽然这些 EC2 实例类型支持超过 64 个 vCPU，但 Cloud Volumes ONTAP 仅支持最多 64 个 vCPU。
+. 选择 EC2 实例类型时，可以指定是共享实例还是专用实例。
+. AWS Local Zones 支持以下 EC2 实例类型系列，规格为 xlarge 到 4xlarge：M5、C5、C5d、R5 和 R5d。link:https://aws.amazon.com/about-aws/global-infrastructure/localzones/features/?nc=sn&loc=2["有关本地区域中受支持的 EC2 实例类型的最新和完整详细信息，请参阅 AWS"^].
++
+AWS Local Zones 中的这些实例类型不支持高写入速度。
+
+
+
+
+
+=== 不再支持 c4、m4 和 r4 实例
+
+Cloud Volumes ONTAP 不再支持 AWS 中的 c4、m4 和 r4 EC2 实例类型。如果系统在 c4、m4 或 r4 实例上运行，请更改为 c5、m5 或 r5 实例。在更改实例类型之前，无法升级到此版本。
+
+link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-change-ec2-instance.html["了解如何更改 Cloud Volumes ONTAP 的 EC2 实例类型"^]。
+
+有关详细信息，请参见：
+
+* https://kb.netapp.com/Cloud/Cloud_Volumes_ONTAP/Converting_an_AWS_Xen_CVO_instance_to_Nitro_KVM["知识库 (KB) 文章：将 AWS Xen CVO 实例转换为 Nitro KVM"^]
+* https://kb.netapp.com/Cloud/Cloud_Volumes_ONTAP/Unable_to_change_the_instance_type_from_r4_to_r5_with_disk_count_error["KB 文章：无法将实例类型从 r4 更改为 r5，出现磁盘计数错误"^]
+* link:https://mysupport.netapp.com/info/communications/ECMLP2880231.html["详细了解这些实例类型的可用性和支持结束"^]
+
+
+
+
+== 支持的区域
+
+有关 AWS 区域支持，请参见 https://bluexp.netapp.com/cloud-volumes-global-regions["Cloud Volumes 全球区域"^]。
