@@ -20,6 +20,14 @@ Cloud Volumes ONTAP 9.17.1 包括新的增强功能。
 
 
 
+== 9.17.1 P5 (2026 年 3 月 23 日)
+
+Cloud Volumes ONTAP 9.17.1 P5 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。
+
+link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/downloads-tab/download/62632/9.17.1P5["查看 P5 补丁中修复的错误列表"^] （需要登录 NetApp 支持站点）。
+
+
+
 == 9.17.1 P4 (2026 年 2 月 17 日)
 
 Cloud Volumes ONTAP 9.17.1 P4 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。
