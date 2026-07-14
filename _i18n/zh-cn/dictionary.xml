@@ -102,7 +102,6 @@
   <block id="98ade5346ada08656e0c7b517b695d0f" category="paragraph">每个 Cloud Volumes ONTAP 许可证支持不同的 EC2 实例类型。为方便起见，下表显示了每种支持的实例类型的 vCPU、RAM 和带宽<block ref="7fe5ce03f92ccda8dcb0aa0fab836a1f" category="inline-link-rx"></block>。</block>
   <block id="afea36f2c9999a231c58b7e9dcf3b16e" category="paragraph">Cloud Volumes ONTAP 可以在保留或按需 EC2 实例上运行。不支持使用其他实例类型的解决方案。</block>
   <block id="c7d741925ef81824617c6a2975104e27" category="inline-link">NetApp 技术报告 4383：具有应用程序工作负载的 Amazon Web Services 中 Cloud Volumes ONTAP 的性能特征</block>
-  <block id="b710bbf07a9ba1fa06f2e6f4e77a42db" category="paragraph">下表中显示的带宽与每个实例类型的记录 AWS 限制相匹配。这些限制与 Cloud Volumes ONTAP 可以提供的不完全一致。有关预期性能，请参阅<block ref="c23654021de34c23e6d408104aa3bf49" category="inline-link-rx"></block>。</block>
   <block id="794df3791a8c800841516007427a2aa3" category="cell">许可证</block>
   <block id="4a7243646d30fc1e81eca2df9826cc03" category="cell">支持的实例</block>
   <block id="5d56dbd20d9ee1ab8a722ff12e331953" category="cell">vCPU</block>
@@ -890,4 +889,5 @@
   <block id="c7bcac860b797f27404d6345b36c3e95" category="paragraph">Cloud Volumes ONTAP 9.17.1 P6 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。</block>
   <block id="4d90d21642c7222312363da000d7409f" category="inline-link-macro">查看 P6 补丁中修复的错误列表</block>
   <block id="9cc7d1e306d6a5fe0c2d14528a2bbb0d" category="paragraph"><block ref="d1851ca2607b699d731598b241fc23ed" category="inline-link-macro-rx"></block> （需要登录 NetApp 支持站点）。</block>
+  <block id="fb83bdf454bf964031306f46d967b051" category="paragraph">下表中显示的带宽与每个实例类型的记录 AWS 限制相匹配。这些限制与 Cloud Volumes ONTAP 可以提供的不完全一致。有关预期性能，请参阅<block ref="f9e25e1e3616de01564541c204317f8f" category="inline-link-rx"></block>。</block>
 </blocks>

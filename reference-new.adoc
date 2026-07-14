@@ -20,6 +20,7 @@ Cloud Volumes ONTAP 9.17.1 包括新的增强功能。
 
 
 
+[[9-17-1-p6-17-april-2026]]
 == 9.17.1 P6 (2026 年 4 月 17 日)
 
 Cloud Volumes ONTAP 9.17.1 P6 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。
@@ -28,6 +29,7 @@ link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/
 
 
 
+[[9-17-1-p5-23-march-2026]]
 == 9.17.1 P5 (2026 年 3 月 23 日)
 
 Cloud Volumes ONTAP 9.17.1 P5 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。
@@ -36,6 +38,7 @@ link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/
 
 
 
+[[9-17-1-p4-17-february-2026]]
 == 9.17.1 P4 (2026 年 2 月 17 日)
 
 Cloud Volumes ONTAP 9.17.1 P4 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。
@@ -44,6 +47,7 @@ link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/
 
 
 
+[[9-17-1-p3-22-december-2025]]
 == 9.17.1 P3 (2025 年 12 月 22 日)
 
 Cloud Volumes ONTAP 9.17.1 P3 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。
@@ -52,6 +56,7 @@ link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/
 
 
 
+[[9-17-1-p2-04-december-2025]]
 == 9.17.1 P2 (2025 年 12 月 4 日)
 
 Cloud Volumes ONTAP 9.17.1 P2 补丁现在可在 AWS、Azure 和 Google Cloud 中进行升级。Console 将提示您将现有系统升级到此补丁版本。
@@ -60,6 +65,7 @@ link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/
 
 
 
+[[9-17-1-p1-04-november-2025]]
 == 9.17.1 P1 (2025 年 11 月 4 日)
 
 Cloud Volumes ONTAP 9.17.1 P1 补丁现在可用于在 AWS、Azure 和 Google Cloud 中进行部署和升级。Console 将提示您将现有系统升级到此补丁版本。
@@ -68,12 +74,14 @@ link:https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/
 
 
 
+[[upgrade-notes]]
 == 升级说明
 
 请阅读这些说明，了解有关升级到此版本的更多信息。
 
 
 
+[[how-to-upgrade]]
 === 如何升级
 
 必须从 Console 完成 Cloud Volumes ONTAP 的升级。您不应使用 System Manager 或 CLI 升级 Cloud Volumes ONTAP。这样做会影响系统稳定性。
@@ -82,12 +90,14 @@ link:http://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-updating-ontap
 
 
 
+[[supported-upgrade-path]]
 === 支持的升级路径
 
 您可以在 AWS、Azure 和 Google Cloud 中从 9.16.1 版本升级到 Cloud Volumes ONTAP 9.17.1 P1。Console 将提示您将符合条件的 Cloud Volumes ONTAP 系统升级到此版本。
 
 
 
+[[downtime]]
 === 停机时间
 
 * 单个节点系统的升级会使系统脱机长达 25 分钟，在此期间 I/O 会中断。
